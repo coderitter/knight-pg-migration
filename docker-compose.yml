@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  test:
+    image: 'node'
+    command: bash -c 'npm install && npx mocha -r ts-node/register "test/**/*.test.ts"'
+    working_dir: '/hostdir'
+    volumes:
+      - './:/hostdir'
+    depends_on: 
+      - db
+  db:
+    image: 'postgres'
+    environment:
+      - POSTGRES_DB=migration_test
+      - POSTGRES_USER=migration_test
+      - POSTGRES_PASSWORD=migration_test

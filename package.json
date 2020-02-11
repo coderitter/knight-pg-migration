@@ -1,0 +1,38 @@
+{
+  "name": "mega-nice-pg-migration",
+  "version": "1.0.0",
+  "description": "A mega nice migration lib for PostgreSQL",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "@types/pg": "^7.14.1",
+    "pg": "^7.18.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "test": "docker-compose up",
+    "build": "rm -rf lib && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c0deritter/mega-nice-pg-migration.git"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "Coderitter GmbH",
+  "bugs": {
+    "url": "https://github.com/c0deritter/mega-nice-pg-pmigration/issues"
+  },
+  "homepage": "https://github.com/c0deritter/mega-nice-pg-migration#readme"
+}
