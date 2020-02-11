@@ -7,15 +7,14 @@
   "files": [
     "lib/**/*"
   ],
-  "dependencies": {
-    "@types/pg": "^7.14.1",
-    "pg": "^7.18.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/mocha": "^5.2.7",
+    "@types/pg": "^7.14.1",
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
+    "pg": "^7.18.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
   },

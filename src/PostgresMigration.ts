@@ -1,12 +1,10 @@
-import { Pool } from 'pg'
-
 export default abstract class PostgresMigration {
 
-  pool: Pool
+  pool: any
   database: string
   versionTable: string
 
-  constructor(pool: Pool, versionTable: string = 'version') {
+  constructor(pool: any, versionTable: string = 'version') {
     this.database = (<any> pool).options.database
     this.pool = pool
     this.versionTable = versionTable
