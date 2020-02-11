@@ -125,4 +125,9 @@ export default abstract class PostgresMigration {
 
     return tables
   }
+
+  async resetDatabase(): Promise<void> {
+    await this.clearDatabase()
+    await this.migrate()
+  }
 }
