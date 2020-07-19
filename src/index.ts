@@ -1,1 +1,1 @@
-export { default as PostgresMigration } from './PostgresMigration'
+export { default as PostgresMigration } from './PgMigration'

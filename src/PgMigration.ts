@@ -66,6 +66,7 @@ export default abstract class PostgresMigration {
 
   async setVersion(version: number): Promise<void> {
     await this.createVersionTable()
+    
     try {
       await this.pool.query(`UPDATE ${this.versionTable} SET version = ${version}`)
     }

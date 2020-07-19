@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import { Pool, PoolConfig } from 'pg'
-import PostgresMigration from '../src/PostgresMigration'
+import PostgresMigration from '../src/PgMigration'
 
 let pool: Pool = new Pool(<PoolConfig> {
   host: 'db',
