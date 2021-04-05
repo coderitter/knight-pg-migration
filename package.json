@@ -1,20 +1,19 @@
 {
-  "name": "mega-nice-pg-migration",
-  "version": "1.1.0",
-  "description": "A mega nice migration lib for PostgreSQL",
+  "name": "knight-pg-migration",
+  "version": "1.0.0",
+  "description": "A database schema migration lib for PostgreSQL.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/mocha": "^5.2.7",
     "@types/pg": "^7.14.1",
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
-    "pg": "^7.18.1",
+    "pg": "^8.5.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
   },
@@ -24,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c0deritter/mega-nice-pg-migration.git"
+    "url": "git+https://github.com/c0deritter/knight-pg-migration.git"
   },
   "keywords": [
     ""
   ],
   "author": "Coderitter GmbH",
   "bugs": {
-    "url": "https://github.com/c0deritter/mega-nice-pg-migration/issues"
+    "url": "https://github.com/c0deritter/knight-pg-migration/issues"
   },
-  "homepage": "https://github.com/c0deritter/mega-nice-pg-migration#readme"
+  "homepage": "https://github.com/c0deritter/knight-pg-migration#readme"
 }
