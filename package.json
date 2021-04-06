@@ -1,7 +1,7 @@
 {
   "name": "knight-pg-migration",
   "version": "1.0.0",
-  "description": "A database schema migration lib for PostgreSQL.",
+  "description": "A database schema migration lib for PostgreSQL",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
