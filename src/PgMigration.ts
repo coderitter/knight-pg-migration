@@ -104,6 +104,24 @@ export default abstract class PostgresMigration {
     return tables
   }
 
+  async getColumns(table: string): Promise<string[]> {
+    let result
+    
+    try {
+      result = await this.pool.query(`SELECT * FROM information_schema.columns WHERE table_schema = 'public' AND table_name = '${table}'`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
+
+    let columns: string[] = []
+    for (let row of result.rows) {
+      columns.push(row.column_name)
+    }
+
+    return columns
+  }
+
   async clearDatabase(): Promise<string[]> {
     let tables = await this.getTables()
 
@@ -130,5 +148,21 @@ export default abstract class PostgresMigration {
   async resetDatabase(): Promise<void> {
     await this.clearDatabase()
     await this.migrate()
+  }
+
+  addColumn(table: string, column: string) {
+    return this.pool.query(`ALTER TABLE ${table} ADD COLUMN ${column}`)
+  }
+
+  async dropColumn(table: string, column: string) {
+    await this.pool.query(`ALTER TABLE ${table} DROP COLUMN ${column}`)
+  }
+
+  async renameColumn(table: string, oldColumnName: string, newColumnName: string) {
+    await this.pool.query(`ALTER TABLE ${table} RENAME COLUMN ${oldColumnName} TO ${newColumnName}`)
+  }
+
+  async changeColumnType(table: string, column: string, type: string) {
+    await this.pool.query(`ALTER TABLE ${table} ALTER COLUMN ${column} TYPE ${type}`)
   }
 }
