@@ -147,6 +147,29 @@ describe('PostgresMigration', function () {
     })
   })
 
+  describe('dropTable', function () {
+    it('should drop new table', async function () {
+      let migration = new TestMigration(pool, 'version')
+      await pool.query('CREATE TABLE a ( c1 INTEGER )')
+
+      await migration.dropTable('a')
+      let tables = await migration.getTables()
+      expect(tables.indexOf('a')).to.equal(-1)
+    })
+  })
+
+  describe('renameTable', function () {
+    it('should rename a table', async function () {
+      let migration = new TestMigration(pool, 'version')
+      await pool.query('CREATE TABLE a ( c1 INTEGER, c2 VARCHAR(10) )')
+
+      await migration.renameTable('a', 'b')
+      let tables = await migration.getTables()
+      expect(tables.indexOf('a')).to.equal(-1)
+      expect(tables.indexOf('b')).to.not.equal(-1)
+    })
+  })
+
   describe('addColumn', function () {
     it('should add a new column', async function () {
       let migration = new TestMigration(pool, 'version')

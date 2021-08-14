@@ -5,7 +5,7 @@ export default abstract class PostgresMigration {
   versionTable: string
 
   constructor(pool: any, versionTable: string = 'version') {
-    this.database = (<any> pool).options.database
+    this.database = (<any>pool).options.database
     this.pool = pool
     this.versionTable = versionTable
   }
@@ -48,7 +48,7 @@ export default abstract class PostgresMigration {
         catch (e) {
           throw new Error(e)
         }
-      }  
+      }
     }
   }
 
@@ -66,7 +66,7 @@ export default abstract class PostgresMigration {
 
   async setVersion(version: number): Promise<void> {
     await this.createVersionTable()
-    
+
     try {
       await this.pool.query(`UPDATE ${this.versionTable} SET version = ${version}`)
     }
@@ -106,7 +106,7 @@ export default abstract class PostgresMigration {
 
   async getColumns(table: string): Promise<string[]> {
     let result
-    
+
     try {
       result = await this.pool.query(`SELECT * FROM information_schema.columns WHERE table_schema = 'public' AND table_name = '${table}'`)
     }
@@ -154,15 +154,48 @@ export default abstract class PostgresMigration {
     return this.pool.query(`ALTER TABLE ${table} ADD COLUMN ${column}`)
   }
 
+  async dropTable(table: string) {
+    try {
+      await this.pool.query(`DROP TABLE ${table} CASCADE`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  async renameTable(oldTableName: string, newTableName: string) {
+    try {
+      await this.pool.query(`ALTER TABLE ${oldTableName} RENAME TO ${newTableName}`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
+  }
+
   async dropColumn(table: string, column: string) {
-    await this.pool.query(`ALTER TABLE ${table} DROP COLUMN ${column}`)
+    try {
+      await this.pool.query(`ALTER TABLE ${table} DROP COLUMN ${column}`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
   }
 
   async renameColumn(table: string, oldColumnName: string, newColumnName: string) {
-    await this.pool.query(`ALTER TABLE ${table} RENAME COLUMN ${oldColumnName} TO ${newColumnName}`)
+    try {
+      await this.pool.query(`ALTER TABLE ${table} RENAME COLUMN ${oldColumnName} TO ${newColumnName}`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
   }
 
   async changeColumnType(table: string, column: string, type: string) {
-    await this.pool.query(`ALTER TABLE ${table} ALTER COLUMN ${column} TYPE ${type}`)
+    try {
+      await this.pool.query(`ALTER TABLE ${table} ALTER COLUMN ${column} TYPE ${type}`)
+    }
+    catch (e) {
+      throw new Error(e)
+    }
   }
 }
